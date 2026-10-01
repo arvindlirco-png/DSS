@@ -7,7 +7,7 @@ export const site = {
   shortName: bi('દહેગામ શહેર સનાતન સમાજ','Dehgam Shahar Sanatan Samaj'),
   tagline: bi('સંગઠન થી સેવા','Together in service'),
   location: bi('દહેગામ · ગાંધીનગર · ગુજરાત','Dehgam · Gandhinagar · Gujarat'),
-  logo: '/images/logo.png', banner: '', publicUrl: '',
+  logo: 'images/logo.png', banner: '', publicUrl: 'https://arvindlirco-png.github.io/DSS',
   hero: bi('સંસ્કારનો વારસો.\nસેવાનો સંકલ્પ.','Rooted in culture.\nUnited in service.'),
   welcome: bi('આપણા સમાજનું એક આંગણું. સાથે મળીએ, પરંપરાઓને જાળવીએ અને આવતી પેઢી માટે ઉજ્જવળ ભવિષ્ય રચીએ.','A shared home for our community. Coming together to preserve our traditions and create a brighter future for the next generation.'),
   intro: bi('દહેગામના પરિવારોને જોડતું સમાજનું માહિતી કેન્દ્ર. શિક્ષણ, આરોગ્ય, સંસ્કૃતિ અને સેવાના હેતુઓ સાથે સૌના સહકારથી આગળ વધવાની ભાવના.','A community information hub connecting families in Dehgam, with a shared spirit of education, health, culture and service.'),
@@ -33,4 +33,4 @@ export const statistics = [
  {value:null,label:bi('યોજાયેલા કાર્યક્રમો','Events conducted')},
  {value:null,label:bi('સેવા પ્રવૃત્તિઓ','Service activities')},
 ];
-export const statsNote = bi('સમાજના દર્શાવેલ આંકડા: 181+ પરિવાર નોંધો અને 940+ પરિવાર સભ્યો. આપેલી યાદીમાં એક પરિવારની સભ્યસંખ્યા બાકી છે. આ ચકાસાયેલ સક્રિય સભ્યપદની સંખ્યા નથી. સભ્ય યાદી પાસવર્ડથી PDF સ્વરૂપે ઉપલબ્ધ છે.','Displayed community figures: 181+ family records and 940+ family members. One family-member count is missing from the supplied list. These are not verified active membership counts. The member directory PDF is available with a password.');
+export const statsNote = bi('સમાજના દર્શાવેલ આંકડા: 181+ પરિવાર નોંધો અને 940+ પરિવાર સભ્યો. આપેલી યાદીમાં એક પરિવારની સભ્યસંખ્યા બાકી છે. આ ચકાસાયેલ સક્રિય સભ્યપદની સંખ્યા નથી. સભ્ય યાદી પાસવર્ડથી PDF સ્વરૂપે ઉપલબ્ધ છે.','Displayed community figures: 181+ family records and 940+ family members. One family-member count is missing from the supplied list. These are not verified active membership counts. The member directory PDF is publicly available.');

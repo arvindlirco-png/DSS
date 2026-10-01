@@ -1,6 +1,6 @@
 # Dehgam Shahar Sanatan Samaj website
 
-Independent React + TypeScript + Vite website. Gujarati is the default language. General pages are public; the member directory uses a shared server-verified password. No OTP, payment, analytics or application-data storage is included. The stock-market project is untouched.
+Independent React + TypeScript + Vite website. Gujarati is the default language. All pages and the member directory PDF are public, as authorised for the GitHub Pages launch. No OTP, payment, analytics or application-data storage is included. The stock-market project is untouched.
 
 ## Start locally
 
@@ -55,7 +55,7 @@ Put consented, compressed JPG/WebP images in `public/images/`. Add album records
 
 ### Downloadable documents
 
-Place approved public PDFs under `public/documents/`, then add a document record with name, category index, date, language, type (`PDF`), URL, description and draft status. Everything in `public/` or `src/` can be downloaded. The supplied member directory PDF is now password protected and must remain outside public assets. Do not add other private records, IDs, signatures or bank details without appropriate authorisation.
+Place approved public PDFs under `public/documents/`, then add a document record with name, category index, date, language, type (`PDF`), URL, description and draft status. Everything in `public/` or `src/` can be downloaded. The member directory PDF is intentionally published at `public/documents/member-directory.pdf`. Do not publish the old password configuration (`access.json`). Do not add other private records, IDs, signatures or bank details without appropriate authorisation.
 
 The draft deed is a text-only HTML extraction of the supplied Word document. Comments, author metadata and embedded files are excluded. Paragraph order is retained, but original table formatting is not. The original file is unchanged. The downloadable enquiry form is a new, clearly labelled printable draft, not an approved official membership form. Use browser Print → Save as PDF if needed. The other membership DOCX in the source directory was not supplied as a requested source and has not been published.
 
@@ -65,7 +65,7 @@ Edit `site.contact`. No address, phone, email, office hours, map or social accou
 
 ## Source interpretation and information still needed
 
-- Source spreadsheet: `Surname wise Society wise  Members List.xlsx`, first sheet, rows with a numeric serial and non-empty name. 181 records; 180 numeric family counts total 940. One count is missing. These are source-list figures, not deduplicated or verified active members. At the user's subsequent explicit request, all 181 records and all eight columns were converted into a PDF, now kept in the private sibling folder. The raw spreadsheet is not included. The directory PDF now requires server-side password access and is stored outside the website project.
+- Source spreadsheet: `Surname wise Society wise  Members List.xlsx`, first sheet, rows with a numeric serial and non-empty name. 181 records; 180 numeric family counts total 940. One count is missing. These are source-list figures, not deduplicated or verified active members. At the user's subsequent explicit request, all 181 records and all eight columns were converted into a PDF, now published as a public PDF following explicit authorisation. The raw spreadsheet and password configuration are not included.
 - Draft deed: `દહેગામ શહેર સનાતન સમાજ Draft deed combining Narendrabhai, Vapari Mandal.docx`. It describes pre-registration proposals. No registration, historical establishment date or final legal status is asserted. Membership details summarize clauses 9–12 and remain draft.
 - The 16 committee names come from the user's message. Final term, official approval, responsibilities and photographs are pending. Confirm English transliterations, Gujarati spellings of Mukeshbhai Chopda/Vasantbhai Dholu, and their roles; do not infer these two are finance members.
 - Confirm full official name, registration details, final deed, approved fees, history, parent-organisation relationship and membership procedure.
@@ -87,15 +87,17 @@ npm run build
 
 The browser suite checks every page in Gujarati and English at desktop and mobile widths, browser errors, horizontal overflow, committee count, privacy conditions, event/notice filters, document responses, gallery keyboard navigation, form validation and disabled submission. Screenshots are saved under `test-results/`.
 
-## Deploy later
+## GitHub Pages deployment
 
-The protected directory requires Node.js hosting; static-only hosting cannot serve it securely. Deploy `dist/`, `server/` and `package.json`, then run `npm start`. The server uses Node built-ins and needs no production package install. Set `PORT` and `HOST` for your platform. Configure HTTPS and set `SAMAJ_PUBLIC_ORIGIN` to the exact HTTPS origin (no trailing slash), and `SAMAJ_SECURE_COOKIE=true`. Set `SAMAJ_PRIVATE_DIR` to a private folder outside the web root containing `member-directory.pdf` and `access.json`. Transfer those private files separately through your hosting provider's secure channel, never through a public repository or public static directory.
+Public website: https://arvindlirco-png.github.io/DSS/
 
-`access.json` contains a salted scrypt password hash, not the plain password. Sessions are HttpOnly, SameSite=Strict, held in server memory and expire after 30 minutes. Restarting the server signs everyone out. Five unsuccessful password attempts from an IP cause a 15-minute cooldown. The server does not trust forwarded IP headers; behind a proxy the cooldown may be shared by visitors. This version supports a single server process; a multi-instance deployment needs shared session/rate-limit storage.
+The `.github/workflows/pages.yml` workflow installs dependencies, builds the site and publishes `dist/` on pushes to `main`. Repository Settings > Pages must use GitHub Actions as its publishing source. No Node server, password or paid hosting is required on GitHub Pages.
 
-Only the protected endpoint streams the PDF after checking authentication. The legacy `/documents/member-directory.pdf` URL is also gated. Do not put a PDF copy back in `public/` or `dist/`. Existing files people already downloaded cannot be revoked by website password protection.
+Hash routes (for example `/#/member-list`) support direct links and refreshes on static hosting. Asset links are relative so the site also works under `/DSS/`.
 
-Set `site.publicUrl` and social-sharing metadata to the final domain. Replace remaining samples and pending official details before launch. The current installation is local, not deployed publicly.
+The public directory includes all 181 records and eight columns from the supplied list. Publication without a password was explicitly authorised. The private sibling folder and `access.json` are not deployed. The previous authentication module remains unused historical code; it is not imported by the frontend, Vite or the local static server.
+
+Set `site.publicUrl` and social-sharing metadata if the domain changes. Forms still validate locally and do not submit data. Remaining draft and sample content remains labelled.
 
 ## Easy launch and delivery package
 
@@ -103,15 +105,15 @@ On Windows, double-click `Start-Website.cmd`, then open http://127.0.0.1:5180. K
 
 `npm run test:production` builds the site and runs the browser suite against the actual production files on port 4180. Coverage includes desktop (1440px), tablet (768px), mobile (390px), both languages, navigation, interactive controls and form validation.
 
-`samaj-website-deploy.zip` contains the public production build and Node server, excluding the private PDF and password hash. Upload to Node hosting and separately configure the private directory as explained above. The ZIP itself is not a public deployment.
+`samaj-website-deploy.zip` is an older local delivery package and is not used by GitHub Pages. The workflow rebuilds the current source.
 
 Sample events and gallery albums can be removed without breaking the homepage. Empty lists show an empty state. Approved notices do not receive sample/draft badges, and gallery preview labels follow the album's sample flag.
 
 
 ## Member directory PDF
 
-At the user's request the Excel list was converted to a ten-page A4 landscape PDF, with 181 records, eight columns, original order, embedded Gujarati fonts, repeating headers and page numbers. It now requires a shared password. The PDF and salted password hash are in the sibling `samaj-website-private` folder, outside this project and outside public assets. Links on the homepage, Documents and Membership pages open `/member-list`, which checks the password on the server. The password is never placed in frontend code or browser storage.
+The public PDF is a ten-page A4 landscape document with 181 records, eight columns, original order and embedded Gujarati fonts. Links on the homepage, Documents and Membership pages open `/#/member-list`, which offers public view and download links without authentication.
 
-To regenerate after an authorised workbook update, run `python scripts/prepare_member_directory.py "path/to/workbook.xlsx" "path/to/temporary.html"`, then `node scripts/print_member_directory.mjs "path/to/temporary.html"`. The latter writes into the private folder, honoring `SAMAJ_PRIVATE_DIR`. Remove temporary HTML after checking the PDF. The script currently verifies 181 records. Do not regenerate the old public PDF.
+To regenerate after an authorised workbook update, run `python scripts/prepare_member_directory.py "path/to/workbook.xlsx" "path/to/temporary.html"`, then `node scripts/print_member_directory.mjs "path/to/temporary.html"`. The latter still writes to the private working folder by default. Review the result, then explicitly copy the approved PDF to `public/documents/member-directory.pdf`. Remove temporary HTML after checking. Do not copy `access.json` or the source workbook to the repository.
 
-For the authentication browser test, set `SAMAJ_TEST_PASSWORD` in the test process environment to the configured directory password, then run `npm run test:production`. Do not commit the password to test files. The other tests cover public content without signing in.
+`npm run test:production` checks public PDF access without credentials, bilingual routes, navigation, document downloads, gallery and forms against the production build.
