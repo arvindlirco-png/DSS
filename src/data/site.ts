@@ -13,7 +13,7 @@ export const site = {
   intro: bi('દહેગામના પરિવારોને જોડતું સમાજનું માહિતી કેન્દ્ર. શિક્ષણ, આરોગ્ય, સંસ્કૃતિ અને સેવાના હેતુઓ સાથે સૌના સહકારથી આગળ વધવાની ભાવના.','A community information hub connecting families in Dehgam, with a shared spirit of education, health, culture and service.'),
   draft: bi('મુસદ્દો · અંતિમ મંજૂરી બાકી છે','Draft · awaiting final approval'),
   sample: bi('નમૂનારૂપ માહિતી','Sample content'),
-  contact: { address: pending, phone: pending, email: pending, hours: pending, mapsUrl: '', socialLinks: [] as {label: string; url: string}[] },
+  contact: { address: pending, phone: pending, email: bi('skkpdsss@gmail.com','skkpdsss@gmail.com'), hours: pending, mapsUrl: '', socialLinks: [] as {label: string; url: string}[] },
   formNote: bi('ઓનલાઇન અરજી હાલમાં બંધ છે. સુરક્ષિત સર્વર જોડાયા પછી જ ફોર્મ મોકલી શકાશે. અહીં ભરેલી માહિતી સંગ્રહિત કે મોકલવામાં આવતી નથી.','Online submission is currently disabled until a secure backend is connected. Information entered here is neither stored nor sent.'),
   footer: bi('વેબસાઇટનું સંચાલન: દહેગામ શહેર સનાતન સમાજ','Website managed by Dehgam Shahar Sanatan Samaj'),
 };
@@ -28,9 +28,9 @@ export const headings = {
  objectives:bi('સેવા અનેક, ભાવના એક','Many ways to serve. One shared purpose.'), events:bi('સાથે મળવાની ક્ષણો','Moments that bring us together'), notices:bi('સમાજની સૂચનાઓ','From the notice board'), committee:bi('સમાજના સેવાભાવી સાથીઓ','The people serving our community'), gallery:bi('આપણી યાદોનું આંગણું','Our community, in moments'), documents:bi('માહિતી અને દસ્તાવેજો','Information & documents'), membership:bi('એક પરિવાર, એક સમાજ','One family. One community.'), stats:bi('આપણો સમાજ, એક નજરે','Our community at a glance'), about:bi('આપણી ઓળખ, આપણો સંકલ્પ','Our identity. Our commitment.'),
 };
 export const statistics = [
- {value:'181+',label:bi('પરિવાર નોંધો','Family records')},
- {value:'940+',label:bi('પરિવાર સભ્યો','Family members')},
+ {value:'220+',label:bi('પરિવાર નોંધો','Family records')},
+ {value:'1100+',label:bi('પરિવાર સભ્યો','Family members')},
  {value:null,label:bi('યોજાયેલા કાર્યક્રમો','Events conducted')},
  {value:null,label:bi('સેવા પ્રવૃત્તિઓ','Service activities')},
 ];
-export const statsNote = bi('સમાજના દર્શાવેલ આંકડા: 181+ પરિવાર નોંધો અને 940+ પરિવાર સભ્યો. આપેલી યાદીમાં એક પરિવારની સભ્યસંખ્યા બાકી છે. આ ચકાસાયેલ સક્રિય સભ્યપદની સંખ્યા નથી. સભ્ય યાદી પાસવર્ડથી PDF સ્વરૂપે ઉપલબ્ધ છે.','Displayed community figures: 181+ family records and 940+ family members. One family-member count is missing from the supplied list. These are not verified active membership counts. The member directory PDF is publicly available.');
+export const statsNote = bi('સમાજના દર્શાવેલ આંકડા: 220+ પરિવાર નોંધો અને 1100+ પરિવાર સભ્યો. આપેલી યાદીમાં એક પરિવારની સભ્યસંખ્યા બાકી છે. આ ચકાસાયેલ સક્રિય સભ્યપદની સંખ્યા નથી. સભ્ય યાદી ટૂંક સમયમાં ઉપલબ્ધ થશે.','Displayed community figures: 220+ family records and 1100+ family members. One family-member count is missing from the supplied list. These are not verified active membership counts. The member directory is coming soon.');

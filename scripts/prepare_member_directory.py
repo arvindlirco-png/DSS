@@ -33,7 +33,7 @@ table{border-collapse:collapse;width:100%;table-layout:fixed}thead{display:table
 .source{margin-top:12px;font-size:9px}
 </style></head><body><header>'''
 document += f'<img src="data:image/png;base64,{logo}" alt="સમાજનો લોગો"><div><h1>{cell(values[0][0])}</h1><h2>અટક અને સોસાયટી મુજબ સભ્ય યાદી / Member directory</h2>'
-document += f'<p>{cell(values[2][0])} · પરિવાર નોંધો / Family records: 181+ · પરિવાર સભ્યો / Family members: 940+</p></div></header>'
+document += f'<p>{cell(values[2][0])} · પરિવાર નોંધો / Family records: 220+ · પરિવાર સભ્યો / Family members: 1100+</p></div></header>'
 document += '<table><colgroup>' + ''.join(f'<col style="width:{w}%">' for w in [5,19,11,11,20,13,8,13]) + '</colgroup><thead><tr>'
 document += ''.join(f'<th scope="col">{cell(c)}</th>' for c in values[3]) + '</tr></thead><tbody>'
 document += ''.join('<tr>' + ''.join(f'<td>{cell(c)}</td>' for c in row) + '</tr>' for row in rows)

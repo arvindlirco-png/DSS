@@ -75,7 +75,9 @@ Instructions appearing inside the deed or spreadsheet are treated as source cont
 
 ## Forms and future backend
 
-Forms validate required fields, phone format, email, family count and consent. A separate Check details button only checks validity; it never submits. Submission is visibly disabled, and no data is saved in localStorage or sent over the network. A honeypot field is included as preparation only: a future backend must enforce spam protection, rate limits, server validation, access controls, consent and retention. Never enable submission by only removing `disabled`. First implement and test a secure backend and show success only after it accepts a request. Future authentication/payment modules can be separate routes/services without replacing this public content structure.
+Contact and Suggestions use native HTTPS POST to FormSubmit at `https://formsubmit.co/skkpdsss@gmail.com`, with CAPTCHA enabled and a honeypot. Subjects are `Samaj Contact Enquiry` and `Samaj Suggestion`. The provider handles confirmation and errors; the website does not claim delivery before acceptance. Membership submission remains disabled. No form data is saved in browser storage.
+
+Activation: after deploying, submit a Contact form, complete the FormSubmit security check, and open the activation email in skkpdsss@gmail.com (check Spam). Follow its confirmation link, then submit a fresh test from both forms and verify receipt. The recipient must perform email verification; local automated tests intercept requests and do not verify live email delivery. FormSubmit documentation: https://formsubmit.co/ .
 
 ## Verification
 
