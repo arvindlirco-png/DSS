@@ -25,6 +25,7 @@ for(const kind of ['contact','suggestions'])test(`${kind} posts validated detail
  await page.getByRole('button',{name:'Send',exact:true}).click();
  await expect(page.getByRole('heading',{name:'Provider response'})).toBeVisible();
  expect(payload?.get('_subject')).toBe(kind==='contact'?'Samaj Contact Enquiry':'Samaj Suggestion');
+ expect(payload?.get('_next')).toBe('https://arvindlirco-png.github.io/DSS/');
  expect(payload?.get('name')).toBe('Test Member');
  expect(payload?.get('email')).toBe('member@example.com');
  expect(payload?.get('consent')).toBe('Yes');
