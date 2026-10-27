@@ -5,14 +5,13 @@ const names = [
  ['ધર્મેન્દ્રભાઈ દિવાણી','Dharmendrabhai Diwani','ઉપ પ્રમુખ','Vice President'],
  ['ઈશ્ર્વરભાઈ ભોજાણી','Ishwarbhai Bhojani','ઉપ પ્રમુખ','Vice President'],
  ['અરવિંદભાઈ લીંબાણી','Arvindbhai Limbani','મંત્રી શ્રી','Secretary'],
- ['તુષારભાઈ માકાણી','Tusharbhai Makani','સહ મંત્રી','Joint Secretary'],
  ['હષૅદભાઈ ચોપડા','Harshadbhai Chopda','સહ મંત્રી','Joint Secretary'],
  ['રીતેશભાઈ માવાણી','Riteshbhai Mavani','ખજાનચી શ્રી','Treasurer'],
  ['ભરતભાઈ દિવાણી','Bharatbhai Diwani','સહખજાનચી','Joint Treasurer'],
- ['મુકેશભાઈ ચોપડા','Mukeshbhai Chopda','સંસ્કૃતિ મંત્રી','Sanskruti Mantri'],['વસંતભાઈ ધોળું','Vasantbhai Dholu','સહ સંસ્કૃતિ મંત્રી','Saha Sanskruti Mantri'],
+ ['દિનેશભાઈ રંગાણી','Dineshbhai Rangani','સંસ્કૃતિ મંત્રી','Sanskruti Mantri'],
  ['રસીકભાઇ ગોગારી','Rasikbhai Gogari'],['ભૌતિકભાઈ સુરાણી','Bhautikbhai Surani'],['કિર્તીભાઈ રૈયાણી','Kirtibhai Raiyani'],['નરેન્દ્રભાઈ વાડીયા','Narendrabhai Wadiya'],['પ્રકાસભાઈ ભગત','Prakashbhai Bhagat'],['યોગેશભાઈ પોકાર','Yogeshbhai Pokar'],
 ];
 export const committee:Person[] = names.map(n=>({name:bi(n[0],n[1]),role:n[2]?bi(n[2],n[3]):bi('નાણા કમીટી','Finance Committee'),group:n[2]?'office':'finance',responsibility:pending,photo:'',phone:'',publicPhone:false}));
-export const committeeNote = bi('આપેલી 16 સભ્યોની યાદી મુજબ. કાર્યકાળ અને સત્તાવાર મંજૂરીની વિગતો બાકી છે. અંગ્રેજી નામો તથા છેલ્લાં બે નામોના ગુજરાતી લખાણની પુષ્ટિ જરૂરી છે.','Based on the supplied list of 16 people. Term and official approval details are pending. English transliterations and the Gujarati spellings of the final two names require confirmation.');
+export const committeeNote = bi('સુધારેલી સભ્ય યાદી મુજબ. કાર્યકાળ અને સત્તાવાર મંજૂરીની વિગતો બાકી છે.','Based on the updated committee list. Term and official approval details are pending.');
 export const groups = {office:bi('હોદ્દેદારો','Office bearers'),finance:bi('નાણા કમીટી','Finance Committee'),other:bi('અન્ય સભ્યો','Other members')};
 export const eventCommittees: {name:Text; members:Text[]}[] = [];

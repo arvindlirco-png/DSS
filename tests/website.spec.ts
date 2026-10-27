@@ -16,7 +16,7 @@ test('every route renders in both languages on desktop and mobile without errors
  expect(errors).toEqual([]);
 });
 test('committee, source totals, bilingual navigation and mobile menu',async({page})=>{
- await page.goto('/#/committee');await expect(page.locator('.person')).toHaveCount(16);
+ await page.goto('/#/committee');await expect(page.locator('.person')).toHaveCount(14);
  await expect(page.locator('.person a[href^="tel:"]')).toHaveCount(0);
  await page.getByRole('button',{name:'English',exact:true}).click();await expect(page.getByRole('heading',{name:'Narendrabhai Bhagat'})).toBeVisible();
  await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Menu',exact:true}).click();await page.locator('nav').getByRole('link',{name:'Membership',exact:true}).click();await expect(page.locator('nav')).toBeHidden();
