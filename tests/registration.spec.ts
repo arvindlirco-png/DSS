@@ -1,0 +1,30 @@
+import {test,expect} from '@playwright/test';
+test('Excel selection, member controls, durable submission and directory search',async({page})=>{
+ await page.goto('/#/family-registration');await page.getByRole('button',{name:'English',exact:true}).click();
+ await expect(page.locator('#head-select option')).toHaveCount(226);
+ await page.locator('#head-search').fill('1');await page.locator('#head-select').selectOption('6');
+ await expect(page.locator('#person-0-name')).toHaveValue('નરેન્દ્રભાઈ વિઠ્ઠલભાઈ વાડીયા');
+ await page.locator('#head-select').selectOption('new');
+ const name=`Browser test ${Date.now()}`;await page.locator('#new-head').fill(name);
+ await page.getByRole('button',{name:'Save family registration',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Family registration saved'})).toHaveCount(0);
+ await page.locator('#family-village').fill('Test village');await page.locator('#family-taluka').selectOption('Bhuj');
+ await page.locator('#family-address').fill('Private test address');await page.locator('#family-mobile').fill('9876543210');
+ await page.getByRole('button',{name:'Add family member'}).click();await page.locator('#person-1-name').fill('Test child');await page.locator('#person-1-relationship').selectOption('Daughter');
+ await page.getByRole('button',{name:'Add family member'}).click();await page.getByRole('button',{name:'Remove this member'}).last().click();
+ await expect(page.getByLabel('Number of family members (including head)')).toHaveValue('2');
+ await page.getByRole('checkbox').check();await page.getByRole('button',{name:'Save family registration',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Family registration saved'})).toBeVisible();
+ await page.getByRole('link',{name:'View member directory',exact:true}).click();await page.getByRole('searchbox').fill(name);
+ await expect(page.locator('main article')).toHaveCount(1);await expect(page.locator('main article')).toContainText('2 members');
+ await expect(page.locator('main')).not.toContainText('Private test address');
+ await page.reload();await expect(page.getByRole('heading',{name,exact:true})).toBeVisible();
+});
+test('failed save retains entered details',async({page})=>{
+ await page.route('**/api/families',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Database temporarily unavailable'})}));
+ await page.goto('/#/family-registration');await page.getByRole('button',{name:'English',exact:true}).click();
+ await page.locator('#head-select').selectOption('new');await page.locator('#new-head').fill('Retained name');
+ await page.locator('#family-village').fill('Village');await page.locator('#family-taluka').selectOption('Bhuj');
+ await page.locator('#family-address').fill('Address');await page.locator('#family-mobile').fill('9876543210');await page.getByRole('checkbox').check();
+ await page.getByRole('button',{name:'Save family registration',exact:true}).click();await expect(page.getByRole('alert')).toContainText('Database temporarily unavailable');await expect(page.locator('#new-head')).toHaveValue('Retained name');
+});

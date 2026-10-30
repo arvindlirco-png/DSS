@@ -1,5 +1,23 @@
 # Dehgam Shahar Sanatan Samaj website
 
+## Family registration and directory — 30 October 2026
+
+The desktop shortcut **My APPs > Dehgam Samaj Website** opens this checkout. Select **Family registration form** in the navigation, or open http://127.0.0.1:5180/#/family-registration after launching it.
+
+- Gujarati and English form with all family and personal fields from `form details.txt`.
+- Searchable selection of 224 unique family heads from Sheet1 of `SHAHER 7-10-26 splitted.xlsx`. Only name, source row and source serial are imported. Source serials are not official Family IDs; users enter their assigned ID and receipt number manually.
+- Each submission includes the head and any added family members. The family count is calculated from those entries. Saving updates `/#/member-list` immediately.
+- Full records persist in SQLite at `C:\Users\Public\BusinessAutomation\samaj-website-private\members.sqlite`, outside the website source and public assets. Directory responses contain only the head name, village, taluka, count and registration reference. No personal details are sent to FormSubmit by this new form.
+- Repeat requests return the same saved reference. A second submission for an existing listed family is rejected rather than overwriting it. Corrections currently require the computer administrator; there is no edit/delete screen.
+- Requires Node.js 22.13+ (Node 24 is installed). The Vite desktop server and `npm start` both provide the database API. `npm run preview` and GitHub Pages are static only and cannot save registrations.
+- The form is also published on GitHub Pages as requested. That static host displays an advance notice and disables saving until backend hosting is connected. Local database records are not published. Internet use needs backend hosting, access controls, abuse protection, HTTPS and a persistent database volume before launch.
+
+For backup, stop the website and copy `members.sqlite` together with any `members.sqlite-wal` and `members.sqlite-shm` files to a safe backup folder. Do not publish these files or the source workbook. `SAMAJ_DB_PATH` can select a different database location. `SAMAJ_PUBLIC_ORIGIN` configures the accepted origin for a future server deployment.
+
+Validation: `npm run test:production` uses an isolated temporary database; `node --test server/registrations.test.mjs` tests persistence, validation, duplicates and retry handling. No test records are added to the real directory.
+
+The following sections document the original website and earlier PDF delivery; current directory behavior is described above.
+
 Independent React + TypeScript + Vite website. Gujarati is the default language. All pages and the member directory PDF are public, as authorised for the GitHub Pages launch. No OTP, payment, analytics or application-data storage is included. The stock-market project is untouched.
 
 ## Start locally

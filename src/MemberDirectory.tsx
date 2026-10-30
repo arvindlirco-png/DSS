@@ -1,7 +1,15 @@
-import {FileText} from 'lucide-react';
-import {directoryText as copy} from './data/directory';
-import {type Lang,type Text} from './data/site';
-export function MemberDirectory({lang}:{lang:Lang}) {
- const t=(text:Text)=>text[lang];
- return <><div className="page-head"><span className="eyebrow"><FileText size={17}/> {t(copy.public)}</span><h1>{t(copy.title)}</h1><p>{t(copy.intro)}</p></div><section className="card directory-access"><FileText size={35}/><h2>{t(copy.comingSoon)}</h2></section></>;
+import {staticDirectoryHost,onlineRegistrationNote} from './data/hosting';
+import {useEffect,useState} from 'react';
+import {Link} from 'react-router-dom';
+import {type Lang} from './data/site';
+type Family={id:string;headName:string;village:string;taluka:string;count:number};
+export function MemberDirectory({lang}:{lang:Lang}){
+ const t=(gu:string,en:string)=>lang==='gu'?gu:en;
+ const [families,setFamilies]=useState<Family[]>([]);const [query,setQuery]=useState('');const [loading,setLoading]=useState(true);const [error,setError]=useState(false);const [reload,setReload]=useState(0);
+ useEffect(()=>{if(staticDirectoryHost){setLoading(false);return;}const controller=new AbortController();setLoading(true);setError(false);fetch('api/families',{signal:controller.signal}).then(async r=>{if(!r.ok||!r.headers.get('content-type')?.includes('application/json'))throw Error();const data=await r.json();if(!Array.isArray(data.families))throw Error();setFamilies(data.families);}).catch(e=>{if(e.name!=='AbortError')setError(true);}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});return()=>controller.abort();},[reload]);
+ if(staticDirectoryHost)return <><div className="page-head"><h1>{t('સભ્ય યાદી','Member directory')}</h1></div><p className="notice-bar">{onlineRegistrationNote[lang]}</p><Link className="button" to="/family-registration">{t('પરિવાર નોંધણી ફોર્મ જુઓ','View family registration form')}</Link></>;
+ const shown=families.filter(f=>`${f.headName} ${f.village} ${f.taluka}`.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()));
+ return <><div className="page-head"><span className="eyebrow">{t('આપણો સમાજ','Our Samaj')}</span><h1>{t('સભ્ય યાદી','Member directory')}</h1><p>{t('ફોર્મ દ્વારા નોંધાયેલા પરિવારોની યાદી.','Families registered through the family registration form.')}</p><Link className="button" to="/family-registration">{t('પરિવારની નોંધણી કરો','Register your family')}</Link></div>
+ <div className="filter-row"><label>{t('નામ, ગામ અથવા તાલુકાથી શોધો','Search by name, village or taluka')}<input type="search" value={query} onChange={e=>setQuery(e.target.value)}/></label><button type="button" className="button secondary" onClick={()=>setReload(x=>x+1)}>{t('યાદી તાજી કરો','Refresh directory')}</button></div>
+ {loading?<p role="status">{t('યાદી લોડ થઈ રહી છે…','Loading directory…')}</p>:error?<div role="alert" className="notice-bar">{t('ડેટાબેઝ ઉપલબ્ધ નથી. ડેસ્કટોપની Dehgam Samaj Website ખોલો અને ફરી પ્રયાસ કરો.','The database is unavailable. Open the Dehgam Samaj Website desktop shortcut and try again.')}</div>:<><p role="status">{families.length} {t('પરિવારો','families')} · {families.reduce((n,f)=>n+f.count,0)} {t('સભ્યો','members')}</p><div className="info-grid">{shown.map(f=><article key={f.id} className="card"><span className="eyebrow">{f.count} {t('સભ્યો','members')}</span><h2>{f.headName}</h2><p>{f.village} · {f.taluka}</p></article>)}</div>{!shown.length&&<div className="empty"><h2>{families.length?t('કોઈ પરિવાર મળ્યો નથી','No matching families'):t('હજુ કોઈ પરિવાર નોંધાયો નથી','No families registered yet')}</h2><p>{t('નોંધણી ફોર્મ સાચવ્યા પછી પરિવાર અહીં દેખાશે.','Saved registrations will appear here automatically.')}</p></div>}</>}</>;
 }

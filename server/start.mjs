@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {registrationsHandler} from './registrations.mjs';
 import {readFile} from 'node:fs/promises';
 import {resolve,extname,dirname,sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -6,6 +7,7 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'../dist');
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.png':'image/png','.svg':'image/svg+xml','.woff':'font/woff','.woff2':'font/woff2','.pdf':'application/pdf'};
 http.createServer((req,res)=>{
  (async()=>{
+  if(await registrationsHandler(req,res))return;
   if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);res.end();return}
   try {
    const path=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
