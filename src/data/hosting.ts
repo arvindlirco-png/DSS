@@ -1,6 +1,6 @@
 import {bi} from './site';
 export const staticDirectoryHost=window.location.hostname.endsWith('.github.io');
 export const onlineRegistrationNote=bi(
- 'ઓનલાઈન નોંધણી હજી શરૂ થઈ નથી. ફોર્મ જોઈ શકાય છે, પરંતુ અહીં વિગતો સાચવી શકાતી નથી. નોંધણી હાલમાં સમાજના કાર્યાલયના કમ્પ્યુટર પર ઉપલબ્ધ છે.',
- 'Online registration is not open yet. You can view the form, but details cannot be saved here. Registration is currently available on the Samaj office computer.'
+ 'પરિવારની વિગતો FormSubmit દ્વારા skkpdsss@gmail.com પર મોકલાશે. આગળના પૃષ્ઠ પર સુરક્ષા ચકાસણી પૂર્ણ કરો. ઈમેલથી મળેલી વિગતો સમાજ દ્વારા નોંધાશે; ઓનલાઈન સભ્ય યાદી આપોઆપ બદલાશે નહીં.',
+ 'Family details will be sent through FormSubmit to skkpdsss@gmail.com. Complete the security check on the next page. The Samaj will record emailed submissions; the online directory will not update automatically.'
 );
